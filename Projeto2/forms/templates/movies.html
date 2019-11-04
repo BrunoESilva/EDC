@@ -1,0 +1,18 @@
+{% extends "layout.html" %}
+?gr={{ grau }}
+{% block content %}
+
+<div class="jumbotron">
+    <ul class="navbar-nav mr-auto">
+        <li class="nav-item active">
+            {% for f in films %}
+                <a class="btn btn-primary" href="{% url 'movie_info' %}?mov={{ f }}">
+                    {{f}}
+                </a>
+                <br />
+            {% endfor %}
+        </li>
+    </ul>
+</div>
+
+{% endblock %}
