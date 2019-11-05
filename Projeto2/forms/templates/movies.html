@@ -1,18 +1,32 @@
 {% extends "layout.html" %}
-?gr={{ grau }}
+
+@model IEnumerable<BootstrapGridLayout.Models.Article></BootstrapGridLayout.Models.Article>
+@using BootstrapGridLayout;
+@{
+    int counter = 0;
+}
+
+
+foreach (var article in Model)
+{
+    if (counter != 0 && counter %3 == 0)
+    {
+        </div>
+        <div class = "row">
+    }
 {% block content %}
-
-<div class="jumbotron">
-    <ul class="navbar-nav mr-auto">
-        <li class="nav-item active">
-            {% for f in films %}
-                <a class="btn btn-primary" href="{% url 'movie_info' %}?mov={{ f }}">
-                    {{f}}
-                </a>
-                <br />
-            {% endfor %}
-        </li>
-    </ul>
-</div>
-
+    <div class="row">
+        {% for f in films %}
+            <div class="col-md-4">
+                <div class = "film">
+                    <a class="btn btn-dark" href="{% url 'movie_info' %}?mov={{ f }}" style="height:200px; width:100%; display:block">
+                        {{f}}
+                    </a>
+                    <br />
+                </div>
+            </div>
+        {% endfor %}
+    </div>
 {% endblock %}
+     counter++;
+}
